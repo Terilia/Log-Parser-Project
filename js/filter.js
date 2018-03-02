@@ -73,5 +73,5 @@ filterarray = {
 	Talk: {say: {class: "say", name: "Test Option 1", type: ["say"]}},
 	Item: {itemobtained: {class: "itemobtained", name: "Test Option 2", type: ["tell"]}},
 	Info: {worldmove: {class: "worldmove", name: "Test Option 3", type: ["party"]}},
-	Others: {battle:{class: "battle", name: "Test Option 4", type: ["emote"]}, testoption5:{class: "Test Option 5", name: "Test Option 5", type: ["discard"]}}
+	Others: {battle:{class: "battle", name: "Test Option 4", type: ["emote"]}, testoption5:{class: "testoption5", name: "Test Option 5", type: ["discard"]}}
 }
