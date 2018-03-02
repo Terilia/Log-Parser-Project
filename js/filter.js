@@ -71,7 +71,7 @@ customfilter2 = []
 
 filterarray = {
 	Talk: {say: {class: "say", name: "Test Option 1", type: ["say"]}},
-	Item: {itemobtained: {class: "itemobtained", name: "Test Option 2", type: ["npc_buy", "npc_buyback_item", "npc_buyback_itemstack", "system_item_add"]}},
-	Info: {worldmove: {class: "worldmove", name: "Test Option 3", type: ["isys_moveworld", "isys_moveworld_complete"]}},
-	Others: {battle:{class: "battle", name: "Test Option 4", type: ["dead", "battle_start", "battle_end", "action"]}, testoption5:{class: "Test Option 5", name: "Test Option 5", type: ["dead", "battle_start", "battle_end", "action"]}}
+	Item: {itemobtained: {class: "itemobtained", name: "Test Option 2", type: ["tell"]}},
+	Info: {worldmove: {class: "worldmove", name: "Test Option 3", type: ["party"]}},
+	Others: {battle:{class: "battle", name: "Test Option 4", type: ["emote"]}, testoption5:{class: "Test Option 5", name: "Test Option 5", type: ["discard"]}}
 }
