@@ -1,0 +1,133 @@
+<html><head>
+<script src="exlib/jquery.min.js?9"></script>
+<meta http-equiv="Cache-control" content="NO-CACHE">
+<link rel="icon" href="favicon.png" type="image/x-icon"/>
+<script src="exlib/jquery-ui.min.js?9"></script>
+<link rel="stylesheet" href="exlib/jquery-ui.css">
+<script src="js/version.js?9" ></script>
+<script src="js/main.js?9"></script>
+<script src="js/add.js?9"></script>
+<script src="js/detection.js?9"></script>
+<script src="js/basicmodules.js?9"></script>
+<script src="js/modules/parsermodule_info.js?9"></script>
+<script src="js/modules/parsermodule_others.js?9"></script>
+<script src="js/modules/parsermodule_talk.js?9"></script>
+<script src="js/modules/parsermodule_item.js?9"></script>
+<script src="js/output.js?9"></script>
+<script src="js/filter.js?9"></script>
+<script src="js/ui.js?9"></script>
+<script src="exlib/emote.js?9"></script>
+<script src="exlib/item.js?9"></script>
+<script src="js/lookup.js?9"></script>
+<script src="js/outshell.js?9"></script>
+<title>Aedi</title>
+<style type="text/css">
+	body {
+		margin: 11% 0% 11%;
+		margin-right: 19%;
+		font-family: Arial, Sans-Serif;
+		font-size: 12px;
+	}
+	#LogAreaText {
+		font-size: 13px;
+	}
+	#Talkoutside {
+		background-color: rgba(246,250,244,1);
+	}
+	#Talki {
+		overflow-y: scroll;
+	}
+	#Itemoutside {
+		background-color: rgba(255, 252, 251,1);
+	}
+	#Infooutside {
+		background-color: rgba(245, 249, 253, 1);
+	}
+	#Othersoutside {
+		background-color: rgba(249, 246, 252,1);
+	}
+	#Tutorial {
+		position: absolute;
+		visibility: false;
+	}
+	.flash {
+   animation-name: flash;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+@keyframes flash {
+	from {background-color: #4caf50;}
+    to {background-color: white;}
+}
+
+</style>
+</head>
+<body style="overflow-y: scroll;" ondblclick="hide()">
+<div>
+<div id="blank" hidden="true" style="position: fixed; height: 4000; width: 4000; top: -50px; left: -50px;z-index: 99999; background-color: white;"></div>
+	<div id="OuterShellLeft" style="z-index: 1; background: #dce3f4; height: 100%;width: 19.25%;float: right; position: fixed;right: 0px;top: 0px">
+		<fieldset id="Outercharacterfilter"><legend>User Filter</legend>
+			<div id="characterfilter" style="height: 77%; overflow-y: scroll"></div></fieldset>
+		
+	</div>
+	<div id="LogArea" style="width: 100%; word-break: break-word; position: inherit; height: inherit;"><div id="LogAreaText" rows="20" cols="200"></div></div>
+	<div id="OuterShellBottom" style="z-index: 3;background: #dce3f4; width: 100%; height: 20%;bottom: 0px; position: fixed">
+		<div style="float: left">
+			<fieldset id="Outercharacterlist" style="float:left;"><legend>Userlist</legend> <div id="CharactersOutershell" style="float:left; height: 175px; overflow: hidden; overflow-y: scroll;width: 361px;"></div></fieldset> 
+			<fieldset id="Outeritemlist" style="float:left;"><legend>Programs</legend> <div id="ItemsOutershell" style="float:left; height: 175px; overflow: hidden; overflow-y: scroll;width: 361px;"></div></fieldset> 
+			<fieldset id="Outermoreinformation" style="float:left;"><legend>More Information</legend> <div id="IDsOutershell" style="float:left; height: 175px; overflow: hidden; overflow-y: scroll;width: 361px;"></div></fieldset> 
+			<fieldset  id="Outerserverfinder" style="float:left;"><legend>Computer Finder</legend>
+			<div id="ServerFinder" style="float:left; height: 175px; overflow: hidden; overflow-y: scroll;width: 350px;"></div></fieldset>
+			<fieldset id="Outeroriginallog" style="float:left;"><legend>Original Log</legend> <div id="OriginalLogOutershellouter" style="float:left; height: 17
+			50px; overflow: hidden;width: 340px;"><textarea readonly="true" wrap="true" cols="45" rows="11" style="resize: none" id="OriginalLogOutershell"></textarea></div></fieldset>
+		</div>
+	</div>
+	<div style="overflow-y: scroll;background: #dce3f4; overflow: hidden; top: 0px; position: fixed; width: 82%; height: 19%">
+		<div style="float: left" id="FilterArea"></div>
+			<fieldset style="float: left; width: 65% ;height: 162px"> <legend>AEDI Settings: </legend>
+			<fieldset id="Outercustomfilter" style="float: left; width: 115px"><legend>Custom Filter</legend>
+				<input rows="1" cols="10" id="InputCustomFilterText" style="overflow: hidden;resize: none; width: 79%"></input><button style="top: -5px;left: 0;position: relative;" id="CustomFilterSend" onclick="customfiltering2_addremove(InputCustomFilterText.value);InputCustomFilterText.value = null;refr()">+</button>
+					<div style="float: left; overflow-y: scroll; width: 100%; height: 50%;" border="1" id="CustomFilterTable"></div><div style="float: left; width: 100%; height: 10%;" border="1" id="FilterMode"><button onclick="changefiltermode();refr();" id="Filtermodechanger">Filtermode: AND</button></div></fieldset>
+				<fieldset  id="Outerloadedlogs" style="float: left; width: 115px"><legend>Loaded Logs</legend>
+					<div  style="float: left; overflow-y: scroll; width: 100%; height: 75.5%;" border="1" id="LoadedLogAreaTable"></div></fieldset>
+				<fieldset id="Outertime" style="float: left;height: 45px;width: 100px "><legend>Time</legend>
+					<div style="float: left; height: 15%;" border="1" ><select onchange="refr()" id="timeselect" style="top: 70%;position: relative;left: 10%;"><option value=0>JST</option><option selected="true" value=9>GMT/BST</option><option value=16>PDT/PST</option></select></div></fieldset>
+				<fieldset id="Outedebug" style="float: left;position: relative;top: 60px;left: -126px;height: 74px"><legend>Debug:</legend> 
+					<button onclick="deletecookie()">Reset Storage</button></br>
+					<button onclick="console.log(aedi)">AEDI Console</button></br>
+					<button onclick="aedi.localdb.characters = {}; refr();">Reset User's</button>
+				</fieldset>
+				<fieldset id="Outerloginput" style="float: left;height: 134px;position: relative;left: -126px;"><legend>Log Input:</legend> 
+					<textarea rows="8" cols="50" id="InputAreaText" style="overflow: hidden;resize: none;"></textarea><button style="top: -58px;height: 124px; left: 4; position: relative;" id="send" onclick=call();>Send</button>
+				</fieldset>
+
+				
+			</fieldset>
+	</div>
+</div>
+<div id="FirstTimeUse" style="position: absolute;top: 0%;left: 0%;height: 100%;width: 100%;background-color: gray; z-index: 99;"><div style="background-color: white; position: absolute; top: 35%; left: 35%; border-style: double; height: 300px;width: 500px;">
+	<div style="position: top; font-size: 36;font-style: Arial, Sans-Serif; text-align: center;">AEDI</div>
+	<div style="position: relative; top: 20%"></div>
+	<div style="position: relative; top: 30%"><input id="confirm1" onchange="submit.disabled ^= true" type="checkbox">Please acknowledge the rules before using this.</div>
+	<div style="position: absolute; top: 93%; left: 88%"><button id="submit" disabled="true" onclick="FirstTimeUse.hidden=true;setcookie();">I agree</button></div>
+	<div style="position: absolute; top: 95%">AEDI is dedicated to Aeditha Vielle@Hyperion.</div>
+</div></div>
+<div id="tutorial2" style="">
+	<img src="pics/moogle.png" style="position: absolute;top: 150;left: 720;width: 100"></img>
+	<div id="tutorial" class="tutorial" style="font-size: 16 ;border-style: solid; width: 700px; height: 120px; background-color: white">
+		<div id="tutorialtext"> These are the Filters. </br>
+		Filters will help you to clean up clutter throughout the Logs and</br>
+		allow you to select that only specific type of lines are shown. </br>
+		They are also broken down in the 4 log categories. </br></div>
+		<button  id="tutorialprevious" style="position: absolute;top: 79%" onclick="tutorial(0);">Previous</button><button id="tutorialnext" style="position: absolute;top: 79%; left: 93.7%" onclick="tutorial(1);">Next</button>
+	</div>
+
+
+
+</div>
+
+</body></html>
