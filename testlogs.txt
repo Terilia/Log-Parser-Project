@@ -22,4 +22,4 @@ Some more "dificult" logs with lookups:
 2018-03-01 00:02:53 thisisatestlog.txt@External Server1 INFO stats - [stat][game][gsys]Cert,key=1,ct=Chara#39489020989391111 Entity#276052472,tg=Chara#00000011111111111,log=0
 2018-03-01 00:02:53 thisisatestlog.txt@External Server1 INFO stats - [stat][game][gsys]Cert,key=2,ct=Chara#00000011111111111 Entity#276044419,tg=Chara#39489020989391111,log=1
 
-2018-03-01 02:51:50 test.txt@Computer2 INFO item - [game][item][game][gsys]ShutdownProgram,actor=Chara#13333333333337111 Entity#271290068,pc_name=TestUser 2,x=13.717689,y=7.008545,z=-8.539319,place#26178628829118508,catalog_id=1,programId=Program#132412
+2018-03-01 02:51:50 test.txt@Computer2 INFO item - [game][item][game][gsys]ShutdownProgram,actor=Chara#13333333333337111 Entity#271290068,pc_name=TestUser 2,x=13.717689,y=7.008545,z=-8.539319,catalog_id=1,programId=Program#132412
